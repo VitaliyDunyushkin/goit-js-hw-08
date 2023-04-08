@@ -1,4 +1,5 @@
 import throttle from 'lodash.throttle';
+import validator from 'validator';
 
 const form = document.querySelector('.feedback-form');
 const input = document.querySelector('input');
@@ -40,7 +41,11 @@ function onFormSubmit(event) {
     const savedUserData = JSON.parse(dataFromStorage);
     console.log('email:', savedUserData.email);
     console.log('message:', savedUserData.message);
+
+    validator.isEmail(savedUserData.email);
   }
+
+  console.dir(event);
 
   localStorage.clear();
   event.currentTarget.reset();
